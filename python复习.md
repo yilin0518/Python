@@ -43,6 +43,10 @@ a**b    乘方 a^b
 not（非）
 and（与） a取值False，b不计算直接返回
 or（或）  a取值True，b不计算直接返回
+当使用not操作符时，返回的结果总是True或False；
+and or not 计算的结果不一定是True或False，请看右侧的例子
+当使用and操作符时，如果第1个对象为空对象，则直接返回第1个对象；否则计算and后面的表达式，以该表达式的结果作为最后的结果；
+当使用or操作符时，如果第1个对象为非空对象，则直接返回第1个对象；否则计算or后面的表达式，以该表达式的结果作为最后的结果。
 ```
 
 ## 混合运算
@@ -147,6 +151,7 @@ range([start,]stop[,step])  返回range对象，使用list()将range对象转化
 ```
 
 利用切片可以原地修改列表或删除列表元素
+
 
 | ![1702312699674](image/1702312699674.png) |
 | ----------------------------------------- |
@@ -287,22 +292,281 @@ key只能为可hash的对象，包括数值、字符串、元组等，而不可h
 
 1. 通过{}创建
 2. dict()创建
-   
+
    ![Alt text](image/5.png)
 3. 通过dict.fromkeys()创建：
-   
-   dict.fromkeys(seq[,value]),value缺省为None
-   
-   4. 使用del 删除键值对或整个字典
-      
-      1. del a[key]
-      2. del a
-   
-   ### 字典操作
-   
-   ![Alt text](image/6.png)
-   
-   字典操作不过多补充了，需要的话自己搜索吧
-   
-   # 选择与循环
 
+   dict.fromkeys(seq[,value]),value缺省为None
+4. 使用del 删除键值对或整个字典
+
+   1. del a[key]
+   2. del a
+
+### 字典操作
+
+![Alt text](image/6.png)
+
+字典操作不过多补充了，需要的话自己搜索吧
+
+# 第三章
+
+## 选择
+
+选择 if elif else
+
+## 循环
+
+for 循环
+
+```text
+for语句语法：
+for x in sqruence:
+  循环体
+else:
+  else子句
+else部分可以没有。
+```
+
+![1702382251129](image/7.png)
+
+while循环
+
+```
+while-else语法：
+while 表达式：
+  循环体
+else:
+  else子句
+含义：当循环自然结束时执行else结构中的语句:如果中间因使用了break或return语句而结束的话，则不执行else子句部分
+```
+
+![Alt](image/8.PNG)
+
+这部分还是需要多用，知识点比较少
+
+# 函数
+
+## 函数定义
+
+```text
+def function(args):
+  '''注释'''
+  函数体
+```
+
+## 形参与实参
+
+```
+假定形式参数为p1,p2,p3，实际参数为r1,r2,r3，则执行：
+  p1, p2, p3 = r1, r2, r3
+
+对不可变对象类型(数值、字符串、元组等)而言：这种赋值是深复制，即如果更改了p1的值，则r1是不变的。
+对可变对象类型而言(列表、集合、字典)   ：这种赋值是别名，即r1和p1指向同一个对象，当对p1进行更改时，r1也同时进行了更改。
+```
+
+### 默认值形参
+
+```
+定义形式：
+def 函数名(……，形参名=默认值):
+  函数体
+定义函数时，默认值形参必须出现在最右侧：即默认值形参右侧没有非默认值形参。
+```
+
+```
+函数的默认值形参是全局变量。
+当默认值形参为可变对象时，会可能出现意外情况，具体可以看下面的文章：
+https://cloud.tencent.com/developer/article/2204723
+```
+
+### 关键字形参
+
+**调用形参时，支持关键字形参**
+
+```
+形式：
+函数名(……，形参名=默认值)
+当使用关键字实参进行调用时，需要满足：
+1）关键字实参的右侧都是关键字实参，而非位置参数；
+2）函数调用时，允许其左侧的参数是位置参数。
+```
+
+### 可变参数形参
+
+![Alt](image/9.png)
+
+### 形参混合使用
+
+严格按照位置形参、关键字形参和可变长度形参的顺序
+
+### 函数调用中的序列解包
+
+![ALt](image/10.png)
+
+## lambda表达式
+
+```
+声明匿名的函数
+形式：
+lambda x,y,z : expression
+lambda和冒号之间的部分为形参，可以使用多个形参，中间使用逗号分隔；
+冒号之后的部分是一个表达式，可以是任意的合法的python表达式。
+```
+
+labmda用于map、fliter、reduce函数中,具体用法自行搜索:
+
+![Alt](image/11.PNG)
+
+# 字符串
+
+由字符（包括字母、数字、汉字、其他符号）组成的一个**不可变**序列。
+
+ord(a)函数:返回字符a的数值
+
+chr(num)函数：返回数值num对应字符
+
+内置函数:  len(s)、type(s)、id(s)、isinstance(s,str)
+
+使用list(s)、tuple(s)、set(s)、dict.fromkeys(s)将s转换成对应类型
+
+t=s[:]   t与s仍是同一对象。不可变序列的别名和切片还是同一对象。
+
+## 字符串常量
+
+使用前需要加：import string
+
+
+| 符号/变量              | 名字       | 包含字符        |
+| ---------------------- | ---------- | --------------- |
+| string.digits          | 数字       | 0-9             |
+| string.ascii_lowercase | 小写字母   | a-z             |
+| string.ascii_uppercase | 大写字母   | A-Z             |
+| string.punctuation     | 大小写字母 | a-zA-Z          |
+| string.printable       | 标点符号   | 自己百度吧      |
+| string.whitespace      | 空白字符集 | '\t\n\r\x0b\x0c |
+
+支持函数：（下面的函数均不改变s）
+
+![1702386484722](image/13.png)
+
+## 字符串对齐
+
+建议看下面这篇文章：
+
+[python中对字符串进行左、中、右对齐操作\_python中center和左对齐-CSDN博客](https://blog.csdn.net/zhw864680355/article/details/97662952)
+
+
+## 格式化
+
+### %格式化
+
+
+![1702387483432](image/15.png)
+
+### format格式化
+
+可以看这篇文章：[format格式化](https://zhuanlan.zhihu.com/p/151442933)
+
+### fstring
+
+会这么多用不到，就用上面的吧，需要的话自己百度
+
+## 查找
+
+```
+find()、rfind()
+
+用法：  s.[r]find(sub[, start[, end]])
+
+find()和rfind方法分别用来查找一个字符串sub在s指定范围（默认是整个字符串）中首次和最后一次出现的位置，如果不存在则返回-1；
+```
+
+```
+.index()、.rindex()
+
+用法：  s.[r]index(sub[, start[, end]])
+
+index()和rindex()方法用来返回一个字符串sub在另一个字符串指定范围中首次和最后一次出现的位置，如果不存在则抛出异常；
+```
+
+```
+.count()
+
+用法：  s.count(sub[, start[, end]]) 
+
+count()方法用来返回一个字符串sub在另一个字符串中指定范围出现的次数。
+```
+
+## 分割
+
+```
+.split()、.rsplit()  
+
+用法：  s.[r]split(sep=None, maxsplit=-1)
+
+通常使用时，不带任何参数，则使用空白符对字符串进行分割，结果放入列表中。
+
+还可以带参数maxsplit，指定分割的最大项数：当可分割的部分大于指定的maxsplit时，只分割成maxsplit项，余下的部分作为整体放在结果的尾部(split)或头部(rsplit)。如果maxsplit的值为负值，则把字符串全部分割。
+
+参数maxsplit的默认值是-1：即把字符串按照分割符全部分割完毕，并把结果放入列表中。
+
+```
+
+```
+.partition()、.rpartion()
+
+用法：  s.[r]partition(a)
+
+partition()和rpartition()用来以指定字符串a为分隔符将原字符串分割为3部分元组，即分隔符前的字符串、分隔符字符串、分隔符后的字符串，如果指定的分隔符不在原字符串中，则返回原字符串和两个空字符串。
+
+```
+
+下面是一些例子：
+![示例](image/16.png)
+
+## 替换
+
+```
+.replace()
+
+用法： s.replace(old, new[, count=-1])
+
+在字符串串中，把包含old的子串，替换成new的子串，参数count指定替换的次数。当count的值为负数时，替换所有的old子串。
+
+替换时按照从左到右的顺序进行。
+```
+
+## 删除
+
+```
+.strip()
+
+用法：  s.[l|r]strip(chars=None)
+
+strip方法用来删除原字符串两端或左端或右端的字符。
+
+不指定chars时，默认删除所有的空白符(包含空格、\t、\n)；指定chars时，只删除指定的字符集中的符号。注意：只在两侧进行。且碰到第1个非chars中的符号时，删除结束。
+
+lstrip只删除左边、rstrip只删除右边
+```
+
+## 成员判定
+
+```
+1.  in
+
+用法：sub in target
+
+判定字符串sub是否出现在target中。如果出现，则计算结果是True；否则计算结果是False。
+
+2.  .[starts|ends]with(sub[, start[, end]])
+
+判定字符串是否以sub开头(starts)或结尾(ends)，并可以指定范围。
+
+```
+![示例](image/17.png)
+
+## 判定函数is
+
+返回值为bool，检测字符串的每个字符是否满足要求
+![示例](image/18.png)
