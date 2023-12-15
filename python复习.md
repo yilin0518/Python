@@ -171,6 +171,12 @@ range([start,]stop[,step])  返回range对象，使用list()将range对象转化
 
 ![1702313173364](image/1702313173364.png)
 
+enumerate可以指定生成的初始下标：
+
+可以看下面这篇文章：
+
+[Python enumerate() 函数 | 菜鸟教程 (runoob.com)](https://www.runoob.com/python/python-func-enumerate.html)
+
 ### 列表推导式(list comprehension)
 
 ![1702313307343](image/1702313307343.png)
@@ -340,7 +346,7 @@ else:
 含义：当循环自然结束时执行else结构中的语句:如果中间因使用了break或return语句而结束的话，则不执行else子句部分
 ```
 
-![Alt](image/8.png)
+![Alt](image/8.PNG)
 
 这部分还是需要多用，知识点比较少
 
@@ -415,7 +421,7 @@ lambda和冒号之间的部分为形参，可以使用多个形参，中间使�
 
 labmda用于map、fliter、reduce函数中,具体用法自行搜索:
 
-![Alt](image/11.png)
+![Alt](image/11.PNG)
 
 # 字符串
 
@@ -455,11 +461,9 @@ t=s[:]   t与s仍是同一对象。不可变序列的别名和切片还是同一
 
 [python中对字符串进行左、中、右对齐操作\_python中center和左对齐-CSDN博客](https://blog.csdn.net/zhw864680355/article/details/97662952)
 
-
 ## 格式化
 
 ### %格式化
-
 
 ![1702387483432](image/15.png)
 
@@ -564,9 +568,179 @@ lstrip只删除左边、rstrip只删除右边
 判定字符串是否以sub开头(starts)或结尾(ends)，并可以指定范围。
 
 ```
+
 ![示例](image/17.png)
 
 ## 判定函数is
 
 返回值为bool，检测字符串的每个字符是否满足要求
 ![示例](image/18.png)
+
+# 正则表达式
+
+用法：
+
+1. 快速分析大量文本以找到特定的符合某些复杂规则（亦称模式）的字符串
+如: (1).从英文小说中查找 hi，但不能把him，high，history也找到
+    (2).要找后面不远处跟着一个Lucy的 hi
+2. 提取、编辑、替换或删除文本子字符串；
+3. 将提取的字符串添加到集合以生成文件；
+
+## 组成
+
+```text
+  由普通字符（包括转移字符）、特殊字符（称为元字符）组成。
+  普通字符：ASCII字符，Unicode字符和转义字符。
+  由于^$.*?+-\{}[]| ()被正则表达式用作元字符，如作为普通字符使用则需要转义
+```
+
+## 正则表达式的使用方法
+
+这一点的话我觉得课件里面讲的挺好的，网上讲的也会比我讲得好。
+
+讲一讲我对正则表达式的理解吧，他最主要的作用是进行字符串匹配。
+
+什么意思呢？比如说我有一个字符串'asdzxczsdqw4er'我需要找到它的一个子串'zxcv'或者是否有这个子串
+
+如果有我就要找到他，那么就可以使用正则表达式了。
+
+所以正则表达式做的就是，我给定一个字符串S，我需要找到在这个字符串中满足特定格式的子串
+
+只要满足特定要求，就算子串彼此有重叠的部分也可以。
+
+但是一般来说不会有重复的部分，因为python的正则表达式默认是最宽匹配，
+
+也就是说一旦匹配就会寻找最长的满足匹配的子串
+
+当然也可能有重复。
+
+可以参照下面这篇文章去理解正则表达式的使用,遇到不理解的例子可以问ai为什么是这样
+
+[python——正则表达式(re模块)详解](https://blog.csdn.net/guo_qingxia/article/details/113979135)
+
+这里面一些概念需要掌握：
+
+```text
+match()函数、search()函数、findall()函数
+
+匹配单个字符、多个字符、行首行尾都是用的什么字符
+
+注意^放在[]的第一个表示取反
+
+分组的用法
+```
+
+# 文件操作
+
+## 打开文件
+
+```
+语法：文件对象名 = open(文件名[，访问模式[，缓冲区]])
+
+访问模式：r[+](读模式)  | w[+](写模式)  | a[+](追加模式)  | b[+](二进制模式)  | +(读写模式)
+缓冲区：0表示不缓存，1表示缓存，大于1则表示缓冲区的大小，小于0这表示使用默认的缓冲区大小；默认是缓存模式
+函数返回1个文件对象，利用该对象可以进行各种文件操作，访问文件对象的属性
+
+```
+
+## 文件对象的常用操作：
+
+![19](image/19.png)
+
+
+## 打开文件
+
+有三种常用方式，但会这么多也没啥用，这里只说一种：
+
+```text
+lines=[]
+with open("sample.txt",'r') as handler:
+  lines=handler.readlines()
+```
+
+# 异常(exception)
+
+python中常用的异常类：
+![20](image/20.png)
+
+
+## 主动抛出异常
+
+```text
+使用raise语句可以主动抛出异常
+
+raise [SomeException[,args[,traceback]]]
+
+SomeException：必须是一个异常类，或异常类的实例
+Args：传递给SomeException的参数，必须是一个元组；
+Traceback：很少用，主要是用来提供一个traceback对象。
+
+```
+
+## 处理异常
+
+有三种结构
+```
+1.  try   except
+
+使用方式一:
+try:
+  try_block #被监控的代码
+except Exception[,reason]:
+  except_block #异常处理代码
+
+使用方式二：
+try:
+  ...
+except BaseException,e:
+  except_block
+
+方式二能够处理所有的异常
+
+2.  try   except    else:
+
+使用方式:
+try:
+  try_block
+except  exception:
+  except_block
+else:
+  else_block
+
+出现例外的话执行except_block,正常运行的话执行else_block
+
+可以带多个except查看多个异常：
+try:
+  try_block
+except  Exception1:
+  except_block_1
+except  Exception2:
+  except_block_2
+...
+执行一个except块后不会接下来执行其他的except块
+
+3.  try   except    finally:
+
+finally后的语句总会执行
+结构：
+try:
+  try_block
+except:
+  except_block
+finally:
+  finally_block
+```
+
+## 断言
+
+语法:
+
+assert  expression[,reason]
+
+当判断表达式expression为真时，什么都不做；如果表达式为假，则抛出异常AssertionError。 
+
+reason通常为字符串，会输出到终端表示异常触发的原因
+
+## with语句
+
+with语句通常用于文件操作，用于异常处理我还真没见过，想知道用法的话自行搜索吧
