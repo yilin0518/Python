@@ -346,7 +346,7 @@ else:
 含义：当循环自然结束时执行else结构中的语句:如果中间因使用了break或return语句而结束的话，则不执行else子句部分
 ```
 
-![Alt](image/8.PNG)
+![Alt](image/8.png)
 
 这部分还是需要多用，知识点比较少
 
@@ -421,7 +421,7 @@ lambda和冒号之间的部分为形参，可以使用多个形参，中间使�
 
 labmda用于map、fliter、reduce函数中,具体用法自行搜索:
 
-![Alt](image/11.PNG)
+![Alt](image/11.png)
 
 # 字符串
 
