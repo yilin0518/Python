@@ -452,8 +452,8 @@ t=s[:]   t与s仍是同一对象。不可变序列的别名和切片还是同一
 | string.digits          | 数字       | 0-9             |
 | string.ascii_lowercase | 小写字母   | a-z             |
 | string.ascii_uppercase | 大写字母   | A-Z             |
-| string.punctuation     | 大小写字母 | a-zA-Z          |
-| string.printable       | 标点符号   | 自己百度吧      |
+| string.punctuation     | 标点符号 | !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~  |
+| string.printable       | 可打印字符   | 所有的字符都包含在内    |
 | string.whitespace      | 空白字符集 | '\t\n\r\x0b\x0c |
 
 支持函数：（下面的函数均不改变s）
