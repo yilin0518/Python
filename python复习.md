@@ -80,7 +80,7 @@ sum():  返回参数的和
 
 感觉不怎么用，知道pi与e、ceil和floor的用法应该就行
 
-跟random模块相同，使用的方式都是math.function()的方式,比如math.random()、math.uniform()
+跟random模块相同，使用的方式都是math.function()的方式,比如math.fabs()、math.floor()
 ![1702310524980](image/1702310524980.png)
 
 # 第二章
