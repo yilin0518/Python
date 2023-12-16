@@ -386,8 +386,9 @@ def 函数名(……，形参名=默认值):
 ```
 函数的默认值形参是全局变量。
 当默认值形参为可变对象时，会可能出现意外情况，具体可以看下面的文章：
-https://cloud.tencent.com/developer/article/2204723
 ```
+
+[默认值形参](https://cloud.tencent.com/developer/article/2204723)
 
 ### 关键字形参
 
